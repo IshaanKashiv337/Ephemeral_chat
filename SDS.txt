@@ -1,0 +1,55 @@
+Server:
+
+	When the server starts:
+		
+		Online users, a global data structure gets initialized as a dictionary.
+		Server starts serving on a thread
+
+	When the server gets a request:
+
+		If the server gets a GET on /, a new thread is spawned
+		As the new thread is spawned, the server redirects the user to /login and serves the login page
+		when the user enters and confirms their user name, online_users get updated with the new entry
+		The new entry contains the username and the IP address of the new user
+		The server immediately forms a websocket connection with the client
+		The server redirects the user to /home and serves the home script
+		All the further communication is done through a formatted string over the websocket connection
+
+	When client is on /home:
+		
+		If user selects Show Online Users button:
+			
+			A formatted string is sent to the server indicating that the user wants the online_users 
+			server reads that message and sends online users list
+			if any time a new user is added(or removed), the server sends(refreshes) the list of online users to each user that has online users list opened
+			if the user selects a username and selects chat, another formatted message is sent to the server indicating which user wants to chat with which
+			This opens a request and which is converted into a formatted string and is sent to the receiver client using online_users
+			At the receiver's end the received string is processed and a request and is shown on the received request tab
+			if the receiver accepts the request, a formatted string is sent to the server which the server parses to get the 2 users.
+			the server then sends a string to both the clients which contains the alternate IP addresses.
+			When the user sends a message, that message is parsed and using that IP address, message is sent to the receiver
+		
+		If user visits the request tab:
+			On the received tab, the user will see all the received requests.
+			If the user clicks accept on any request, the IP address attached to that request gets attached to a formatted string and is then sent to server and is used by 			the server to send messages to the receiver(Check if the user is online or not)
+			A 180 second timer will be running on each request
+		
+		If the user visits the sent tab:
+			A 180s timer will be there for each request
+			all the sent requests will be visible here
+			on each request, a cancel button will be there
+			clicking the cancel button will send a formatted string to the server and the formatted string will have all the info of that particular request
+			
+	When client is on /chat:
+		on the right hand side of the screen, there will be the request tab(collapsed)
+		The user can type anything in the message bar and send it using the send button next to the bar.
+		If any user sends a message, the message gets put in a JSON and has the adequate metadata to let server to send the receiver the message
+		If the client chooses to leave the chat, they can click the leave button and it sends thee server a formatted string that ends the session.
+
+
+Extra features that can be added:
+	Encryption
+	Random for each user session
+	letting users download the chat
+	tick mark/ received and sent sign
+	

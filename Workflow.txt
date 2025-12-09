@@ -1,0 +1,10 @@
+User visits the website and has to only enter their username and click enter.
+After entering, user gets redirected to home page.
+On the home page user can enter the username of receiver or they can click on online users and select the receiver.
+if the receiver accepts the request, after 5 seconds, both the users are redirected to chat page.
+User can enter their messages in the message box and can send using the send button.
+User can leave the chat using the leave button.
+user can switch to another receiver and leave current receiver by accepting another receiver's request.
+Anytime, a user breaks the connection, it is handled safely.
+If a connection is broken or a user clicks log out, online users are updated.
+Every time a user logs in, online users are updated.

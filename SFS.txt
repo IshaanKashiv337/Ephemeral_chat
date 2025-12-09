@@ -1,0 +1,65 @@
+When user visits the website, login page appears at first.
+
+A box with default login box opens.
+
+In the box, only one label(username) with an input box will be there.
+
+Under the input box, a "Set" button will be there.
+
+licking on set will take the user to the home screen.
+
+If any username already exists, a message will pop up quoting that this username is already taken.
+
+
+
+Home Page:
+
+	On the home page, a search bar will be there over which a text will be there quoting "Enter the username you want to chat with".
+
+	Next to the search bar, there will be send request button, clicking it will send a request to the intended user.
+
+	If not accepted, a request can stay alive for 180 seconds.
+	
+	On the top right corner there will be a button named requests.
+
+	If that button is clicked, a tab opens up on the right side of the screen.
+
+	The tab has 2 sub tabs, one for outgoing and another for incoming. clicking on a sub tab will show its contents on the whole tab.
+
+	Each sent request will be shown in outgoing subtab and each incoming will be shown in incoming.
+
+	Each outgoing request will have a cancel button and each incoming request will have an accept button.
+
+	If cancel is clicked, the ongoing request gets dumped, and if accept is clicked, both the clients get a message quoting "starting chat in 5, 4, 3...".
+
+	After 5 seconds both get redirected to the chat page.
+
+	If the search bar is empty, send request button will be disabled.
+	
+	If the send request button is clicked and the username does not exist in the data, then a message pops quoting "Username does not exist, please select a valid username".
+
+	A user can send requests to different users at once, in that case, the user who accepts the request first gets to chat with the sender.
+
+	All pending outgoing requests get discarded if a user starts chatting with another. Incoming requests stay unaffected.
+
+Chat page:
+
+	The home page will have requests button on the top right panel.
+
+	Outgoing tab will stay cleared, in incoming tab, incoming requests will be there.
+
+	Next to each incoming request, a "Leave chat and accept" button will be there, clicking on it will leave the current chat and let the user join the accepted chat in 5 seconds.
+
+	
+
+	In the middle of the screen, name of the receiver user will be there.
+
+	On the top left corner, logo of the website will be there.
+
+	Under the logo, leave chat button will be there, clicking on it will redirect the user to home page.
+
+	A message bar will be there at the bottom of the page with a send button (arrow head).
+
+	Sender's messages will be positioned on the right and receiver's messages will be positioned on the left.
+	
+	Messages can take at most 80% of the screen width.
