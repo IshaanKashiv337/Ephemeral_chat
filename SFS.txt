@@ -62,4 +62,5 @@ Chat page:
 
 	Sender's messages will be positioned on the right and receiver's messages will be positioned on the left.
 	
+
 	Messages can take at most 80% of the screen width.
