@@ -52,4 +52,5 @@ Extra features that can be added:
 	Random for each user session
 	letting users download the chat
 	tick mark/ received and sent sign
+
 	
