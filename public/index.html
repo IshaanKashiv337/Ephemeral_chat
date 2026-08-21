@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Exchange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. ONBOARDING SCREEN -->
+    <!-- Shows slides, slide dots at bottom middle, and next button at bottom right[cite: 1]. -->
+    <div id="onboarding-screen" class="screen active">
+        <div id="slide-container">
+            <!-- Slide content injected here -->
+        </div>
+        <div class="bottom-middle-dots" id="slide-dots"></div>
+        <button class="bottom-right-btn" id="next-slide-btn">Next</button>
+    </div>
+
+    <!-- 2. LOGIN / SIGN UP SCREEN -->
+    <div id="login-screen" class="screen hidden">
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <label id="wrong-password-label" class="error hidden">Wrong password</label> <!-- Shown if wrong password[cite: 1] -->
+        <button id="login-btn">Login</button>
+        <button id="goto-signup-btn">Sign Up</button>
+        <button id="forgot-password-btn">Forgot Password</button>
+    </div>
+
+    <!-- FORGOT PASSWORD SCREEN -->
+    <div id="forgot-password-screen" class="screen hidden">
+        <input type="number" id="forgot-phone" placeholder="Phone No.">
+        <input type="text" id="forgot-otp" placeholder="OTP">
+        <button id="reset-password-btn">Change Password</button>
+    </div>
+
+    <!-- SIGN UP PAGE -->
+    <!-- Mandatory: Phone, Address fields. Optional: Others. State/City are dropdowns[cite: 1]. -->
+    <div id="signup-screen" class="screen hidden">
+        <input type="text" id="signup-name" placeholder="Name">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="number" id="signup-phone" placeholder="Phone No. (Mandatory)" required>
+        <select id="signup-state"><option>Select State</option></select>
+        <select id="signup-city"><option>Select City</option></select>
+        <input type="number" id="signup-pincode" placeholder="Pincode (Mandatory)" required>
+        <input type="text" id="signup-street" placeholder="Street No. (Mandatory)" required>
+        <input type="text" id="signup-building" placeholder="Building Name/No. (Mandatory)" required>
+        <button id="register-btn" class="greyed-out">Sign Up</button> <!-- Turns colored when filled correctly[cite: 1] -->
+    </div>
+
+    <!-- 3. HOME SCREEN -->
+    <div id="home-screen" class="screen hidden">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <button id="nav-drawer-btn" class="drawer-icon">|||</button> <!-- 3 bar icon for drawer[cite: 1] -->
+            <button id="notifications-icon">Alerts</button>
+            <input type="text" id="home-search-bar" placeholder="Search...">
+            <div id="account-icon" class="circular-icon">A</div> <!-- First initial[cite: 1] -->
+        </div>
+
+        <!-- Left Drawer -->
+        <div id="nav-drawer" class="drawer hidden">
+            <button id="tab-home">Home</button>
+            <button id="tab-request-history">Request History</button>
+            <button id="tab-genre">Genre</button>
+            <button id="tab-your-books">Your Books</button>
+        </div>
+
+        <!-- Main Content -->
+        <button id="add-book-icon">Add Book</button>
+        <input type="text" id="community-search-bar" placeholder="Search Communities...">
+        <ul id="community-list">
+            <!-- Dynamically populated: Group icon, name, new book dot[cite: 1] -->
+        </ul>
+        <button id="create-community-fab" class="bottom-right-btn">+</button> <!-- Plus icon[cite: 1] -->
+    </div>
+
+    <!-- 4. SEARCH SCREEN -->
+    <div id="search-screen" class="screen hidden">
+        <div class="top-bar">
+            <button class="back-btn">Back</button> <!-- Top left[cite: 1] -->
+            <input type="text" id="active-search-bar" placeholder="Search books...">
+            <button id="mic-icon">Mic</button> <!-- Vocal inputs[cite: 1] -->
+            <button class="options-btn">Options</button> <!-- Top right[cite: 1] -->
+        </div>
+        <div class="filters">
+            <button id="filter-icon">Filter</button> <!-- Genre, distance, editions[cite: 1] -->
+            <button id="sort-icon">Sort By</button> <!-- Distance, editions, reviews[cite: 1] -->
+        </div>
+        <ul id="search-suggestions" class="hidden"></ul>
+        <ul id="search-history-list">
+            <!-- Max 3 previous searches, hold to delete[cite: 1] -->
+        </ul>
+        <button id="clear-history-btn" class="bottom-center">Clear History</button>
+    </div>
+
+    <!-- 5. UPLOAD SCREEN -->
+    <div id="upload-screen" class="screen hidden">
+        <div id="image-upload-area" class="dotted-line ratio-9-16">
+            <button id="upload-camera-btn">Camera</button>
+            <button id="upload-gallery-btn">Gallery</button>
+        </div>
+        <input type="text" id="upload-name" placeholder="Name of book (Mandatory)" required>
+        <input type="text" id="upload-author" placeholder="Author (Mandatory)" required>
+        <input type="number" id="upload-edition" placeholder="Edition (Mandatory)" required>
+        <select id="upload-genre"><option>Select Genre</option></select>
+        <textarea id="upload-description" placeholder="Description"></textarea>
+        <select id="upload-community-select" multiple>
+            <option value="all">Select All</option>
+        </select>
+        <button id="submit-book-btn">Upload Book</button>
+    </div>
+
+    <!-- 6. TRANSACTION (BORROWER'S VIEW) -->
+    <div id="transaction-screen" class="screen hidden">
+        <button class="back-btn">Back</button>
+        <div id="trans-book-image" class="ratio-9-16"></div>
+        <button id="request-book-btn">Request</button> <!-- Sends notification to owner[cite: 1] -->
+        <div id="trans-book-details" class="linear-layout">
+            <!-- Name, author, edition, genre, distance, condition, language, times lent, community, description[cite: 1] -->
+        </div>
+    </div>
+
+    <!-- 7. NOTIFICATIONS SCREEN -->
+    <div id="notifications-screen" class="screen hidden">
+        <button class="back-btn">Back</button>
+        <div id="notifications-list" class="linear-layout">
+            <!-- List of requests (book name, bold borrower name, distance, reject cross icon)[cite: 1] -->
+        </div>
+        <div id="request-details-window" class="hidden">
+            <!-- Details of requested book and borrower distance[cite: 1] -->
+            <button id="accept-request-btn">Accept Request</button>
+        </div>
+    </div>
+
+    <!-- 8. COMMUNITY CHAT -->
+    <div id="community-chat-screen" class="screen hidden">
+        <h2 id="chat-community-name">Community Name</h2>
+        <div id="chat-messages">
+            <!-- Messages (Unavailable books greyed out)[cite: 1] -->
+        </div>
+        <button id="chat-plus-icon" class="bottom-middle">+</button>
+        <div id="chat-plus-options" class="hidden">
+            <button id="chat-new-book">New Book</button> <!-- Opens upload screen[cite: 1] -->
+            <button id="chat-uploaded-books">Uploaded Books</button> <!-- Opens 'My Books'[cite: 1] -->
+        </div>
+    </div>
+
+    <!-- 9. CREATE COMMUNITY SCREEN -->
+    <div id="create-community-screen" class="screen hidden">
+        <div id="community-photo-upload" class="middle-section">Upload Community Photo</div>
+        <input type="text" id="comm-name" placeholder="Name of community (Mandatory)">
+        <input type="text" id="comm-city" placeholder="City (Mandatory)">
+        <input type="text" id="comm-locality" placeholder="Locality">
+        <input type="number" id="comm-pincode" placeholder="Pincode (Mandatory)">
+        <textarea id="comm-desc" placeholder="Short description"></textarea>
+        <select id="comm-visibility">
+            <option value="public">Public</option>
+            <option value="protected">Protected</option> <!-- Creator approves requests[cite: 1] -->
+        </select>
+        <button id="create-comm-btn" class="bottom-btn">Create</button>
+    </div>
+
+    <!-- 10. YOUR BOOKS PAGE -->
+    <div id="your-books-screen" class="screen hidden">
+        <div class="top-bar">
+            <button class="back-btn">Back</button>
+            <button class="options-btn">Options</button>
+        </div>
+        <div id="your-books-grid">
+            <!-- Sections with 4:3 ratio. Contains photo, name, author, Availability status, green/red toggle[cite: 1] -->
+        </div>
+    </div>
+
+    <!-- 11. REQUEST HISTORY -->
+    <div id="request-history-screen" class="screen hidden">
+        <div class="top-bar">
+            <button class="back-btn">Back</button>
+            <button class="options-btn">Options</button>
+        </div>
+        <div class="left-controls">
+            <button id="sort-history-btn">Sort (Time Asc/Desc)</button> <!--[cite: 1] -->
+            <button id="filter-history-btn">Filter (Accepted/Rejected)</button> <!--[cite: 1] -->
+        </div>
+        <button id="reset-history-btn" class="right-control">Reset</button> <!-- Removes preferences[cite: 1] -->
+        <div id="request-history-list" class="linear-layout">
+            <!-- Requests with hyperlinks to book/user pages[cite: 1] -->
+        </div>
+        <button id="clear-request-history-btn" class="bottom-btn">Clear History</button>
+    </div>
+
+    <!-- 12. GENRE PAGE -->
+    <div id="genre-screen" class="screen hidden">
+        <ul id="popular-genres-list" class="linear-layout">
+            <!-- Click genre to open filtered search copy with language filter[cite: 1] -->
+        </ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
